@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>フォーム</h1>
+
+    <!-- formのtarget は、iframeのnameと同じ名前にする。また、送信されたときにsubumitted=trueとするために、onsubmitを使用する -->
+    <form
+        action=""
+        method="post" target="hidden_iframe" onsubmit="submitted=true;">
+        
+
+        <button type="submit">送信</button>
+    </form>
+
+    <script>
+        let submitted = false;
+
+        const pageTransition = function () {
+            if (submitted) {
+                window.location = 'submited_form.html';
+            }
+        }
+    </script>
+
+    <!-- style:none がなければ送信時に若干google formの送信後のページが写り込んでしまう。 -->
+    <!-- iframe name は、form のname と同じにする。 -->
+    <iframe name="hidden_iframe" style="display:none;" onload="pageTransition()"></iframe>
+
+</body>
+</html>
